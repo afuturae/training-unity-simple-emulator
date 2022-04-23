@@ -5,21 +5,20 @@ using UnityEngine;
 public class PlayerOne : MonoBehaviour
 {
 
-    readonly float velocity = 6f;
-    public Transform player;
+    readonly float velocity = 600f;
+    public Rigidbody2D rb2d;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
     }
 
     // Update is called once per frame
-    void Update() {
-        if(Input.GetKey(KeyCode.S) && player.position.y >= -4) {
-            player.Translate(new Vector2(0, -1) * velocity * Time.deltaTime);
-        } else if(Input.GetKey(KeyCode.W) && player.position.y <= 4) {
-            player.Translate(new Vector2(0, 1) * velocity * Time.deltaTime);
+    void FixedUpdate() {
+        rb2d.velocity = new Vector2(0, 0);
+        if (Input.GetKey(KeyCode.S)) {
+            rb2d.velocity = new Vector2(0, -1) * velocity * Time.deltaTime;
+        } else if(Input.GetKey(KeyCode.W)) {
+            rb2d.velocity = new Vector2(0, 1) * velocity * Time.deltaTime;
         }
     }
 
