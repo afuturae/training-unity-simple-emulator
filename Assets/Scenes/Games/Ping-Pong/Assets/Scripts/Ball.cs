@@ -17,6 +17,11 @@ public class Ball : MonoBehaviour
         );
     }
 
+    void Reset() {
+        ballTransform.position = new Vector3(0,0,0);
+        GenerateNewDirection();
+    }
+
     void Awake() {
         GenerateNewDirection();
     }
@@ -28,8 +33,12 @@ public class Ball : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        if(GameManager.isPoint) {
+            Reset();
+            GameManager.isPoint = false;
+        }
         ballTransform.position += direction * velocity * Time.deltaTime;
     }
 

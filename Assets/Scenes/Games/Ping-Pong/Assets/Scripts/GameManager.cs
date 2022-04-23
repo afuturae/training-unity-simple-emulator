@@ -5,14 +5,18 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+
+    public static bool isPoint = false;
     public TMP_Text scoreboard;
     private static int[] scoreboardIndex;
 
     public static void playerOnePoint() {
         scoreboardIndex[0] = ++scoreboardIndex[0];
+        isPoint = true;
     }
     public static void playerTwoPoint() {
         scoreboardIndex[1] = ++scoreboardIndex[1];
+        isPoint = true;
     }
 
     void Awake() {
