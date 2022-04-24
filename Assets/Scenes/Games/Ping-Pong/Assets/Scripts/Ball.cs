@@ -39,7 +39,9 @@ public class Ball : MonoBehaviour
             Reset();
             GameManager.isPoint = false;
         }
-        ballTransform.position += direction * velocity * Time.deltaTime;
+        if(!GameManager.isPause){
+            ballTransform.position += direction * velocity * Time.deltaTime;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collisor) {
