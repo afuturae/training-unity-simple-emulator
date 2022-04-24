@@ -491,6 +491,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56756f826fac8e04f841ce43c58522cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1794992821}
+  floorBluePrefab: {fileID: 408437397871156154, guid: 420ff8b55a4bf06498746ecebf306787, type: 3}
+  floorRedPrefab: {fileID: 843147632669555231, guid: 1c440094bf268f64aa2879291ff6bcbb, type: 3}
 --- !u!1001 &1315350149
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2163435580673990658, guid: 8d5370d16d41b67449075728394ea190, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4691742694016059156, guid: 8d5370d16d41b67449075728394ea190, type: 3}
       propertyPath: m_Name
       value: Floor_Red Variant
@@ -25,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5022070967917064554, guid: 8d5370d16d41b67449075728394ea190, type: 3}
       propertyPath: m_Color.r
-      value: 0.77254903
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8367869539544150409, guid: 8d5370d16d41b67449075728394ea190, type: 3}
       propertyPath: m_RootOrder
