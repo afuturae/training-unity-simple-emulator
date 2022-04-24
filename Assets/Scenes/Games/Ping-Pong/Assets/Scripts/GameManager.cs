@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKey(KeyCode.Escape)) {
             info.text = "Jogo pausado - F2 para resetar o game!";
             isPause = true;
+            Time.timeScale = 0;
         }
 
         scoreboard.text = string.Format(
