@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject player;
+    
     public float velocity = 60f;
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GetComponent<Rigidbody2D>().gameObject;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
         if (Input.GetKey(KeyCode.W))
         {
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1) * velocity * Time.deltaTime;
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 4) * velocity * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.A))
         {
@@ -30,7 +32,7 @@ public class PlayerController : MonoBehaviour
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(1, 0) * velocity * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             ChangeColor();
         }
@@ -39,14 +41,15 @@ public class PlayerController : MonoBehaviour
     void ChangeColor()
     {
 
-        if (GameController.GetColor(player) == (new Color(0, 0.7f, 0, 1)))
-        {
-            
+        if (GameController.GetColor(player) == (new Color(0, 0, 0.7f, 1)))
+        {            
             Debug.Log("A bola está azul, troque para vermelho");
+            player.GetComponent<SpriteRenderer>().color = new Color(0.7f, 0, 0, 1);
         }
         else
         {
             Debug.Log("A bola está vermelho, troque para azul");
+            player.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0.7f, 1);
         }
 
     }
