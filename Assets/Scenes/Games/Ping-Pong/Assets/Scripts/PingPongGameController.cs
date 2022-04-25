@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class PingPongGameController : MonoBehaviour
 {
 
     public static bool isPoint = false;
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         scoreboardIndex = new int[] {0, 0};
     }
 
-    public static void playerOnePoint() {
+    public static void PlayerOnePoint() {
         scoreboardIndex[0] = ++scoreboardIndex[0];
         isPoint = true;
         if(scoreboardIndex[0] >= 5) {
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         }
         PauseGame();
     }
-    public static void playerTwoPoint() {
+    public static void PlayerTwoPoint() {
         scoreboardIndex[1] = ++scoreboardIndex[1];
         isPoint = true;
         if(scoreboardIndex[1] >= 5) {
