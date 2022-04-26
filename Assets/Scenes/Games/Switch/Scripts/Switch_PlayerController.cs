@@ -5,55 +5,57 @@ using UnityEngine;
 public class Switch_PlayerController : MonoBehaviour
 {
 
+    [SerializeField]
     private GameObject player;
 
-    private Vector2 velocity;
+    public float xSpeed = 10f;
 
-    private Vector2 xVelocity;
-    public float xSpeed = 5f;
+    private float direction;
 
-    private Vector2 yVelocity;
+    private float jumpSpeed = 20f;
 
-    public float maxHeight = 2f;
-    private float jumpSpeed;
-    public float timeToPeak = 0.3f;
+    [SerializeField]
+    private Transform groundCheck;
+
+    [SerializeField]
+    private LayerMask groundLayer;
 
     private float gravity;
+
+    public float maxHeight;
+
+    public float timeToPeak;
+
+    public static bool isDie;
 
     private void Awake()
     {
         player = GetComponent<Transform>().gameObject;
 
-        gravity = (2 * maxHeight) / Mathf.Pow(timeToPeak, 2);
+        gravity = (2 * maxHeight) / (Mathf.Pow(timeToPeak, 2));
 
         jumpSpeed = gravity * timeToPeak;
+
+        player.GetComponent<Rigidbody2D>().gravityScale = Mathf.Abs(gravity / Physics2D.gravity.magnitude);
 
     }
 
     private void Update()
     {
-        float xInput = Input.GetAxis("Horizontal");
+        direction = Input.GetAxis("Horizontal");
 
-        xVelocity = xSpeed * xInput * Vector2.right;
-
-        yVelocity += gravity * Time.deltaTime * Vector2.down;
-
-        if (player.GetComponent<CharacterController>().isGrounded)
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            yVelocity = Vector2.down;
+            Jump();
         }
-
-        if (Input.GetKeyDown(KeyCode.W) && player.GetComponent<CharacterController>().isGrounded)
-        {
-            yVelocity = jumpSpeed * Vector2.up;
-        }
-
-        velocity = xVelocity + yVelocity;
-
-        player.GetComponent<CharacterController>().Move(velocity * Time.deltaTime);
 
         ChangeColor();
 
+    }
+
+    private void FixedUpdate()
+    {
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * xSpeed, player.GetComponent<Rigidbody2D>().velocity.y);
     }
 
     void ChangeColor()
@@ -72,5 +74,23 @@ public class Switch_PlayerController : MonoBehaviour
             }
         }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Switch_DieZone"))
+        {
+            isDie = true;
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private void Jump()
+    {
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, jumpSpeed);
     }
 }
