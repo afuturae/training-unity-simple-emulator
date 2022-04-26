@@ -35,11 +35,11 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(GameManager.isPoint) {
+        if(PingPongGameController.isPoint) {
             Reset();
-            GameManager.isPoint = false;
+            PingPongGameController.isPoint = false;
         }
-        if(!GameManager.isPause){
+        if(!PingPongGameController.isPause){
             ballTransform.position += direction * velocity * Time.deltaTime;
         }
     }

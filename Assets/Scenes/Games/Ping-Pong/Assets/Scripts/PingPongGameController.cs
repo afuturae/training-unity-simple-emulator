@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class PingPongGameController : MonoBehaviour
 {
 
     public static bool isPoint = false;
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         scoreboardIndex = new int[] {0, 0};
     }
 
-    public static void playerOnePoint() {
+    public static void PlayerOnePoint() {
         scoreboardIndex[0] = ++scoreboardIndex[0];
         isPoint = true;
         if(scoreboardIndex[0] >= 5) {
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         }
         PauseGame();
     }
-    public static void playerTwoPoint() {
+    public static void PlayerTwoPoint() {
         scoreboardIndex[1] = ++scoreboardIndex[1];
         isPoint = true;
         if(scoreboardIndex[1] >= 5) {
@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
         isPause = true;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         var gameObj = GameObject.Find("GameManager").transform
@@ -63,7 +62,6 @@ public class GameManager : MonoBehaviour
         info.text = "O jogo está prestes a começar!";
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(isPause) {
@@ -78,6 +76,9 @@ public class GameManager : MonoBehaviour
                 isPause = false;
                 Time.timeScale = 1;
                 canvasMenu.gameObject.SetActive(false);  
+            }
+            if(Input.GetKey(KeyCode.F1)) {
+                GameManager.BackToMenu();
             }
         }
 

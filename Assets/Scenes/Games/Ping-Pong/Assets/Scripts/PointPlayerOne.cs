@@ -5,6 +5,6 @@ using UnityEngine;
 public class PointPlayerOne : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other) {
-        GameManager.playerOnePoint();
+        PingPongGameController.PlayerOnePoint();
     }
 }
