@@ -52,7 +52,6 @@ public class PingPongGameController : MonoBehaviour
         isPause = true;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         var gameObj = GameObject.Find("GameManager").transform
@@ -63,7 +62,6 @@ public class PingPongGameController : MonoBehaviour
         info.text = "O jogo está prestes a começar!";
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(isPause) {
@@ -78,6 +76,9 @@ public class PingPongGameController : MonoBehaviour
                 isPause = false;
                 Time.timeScale = 1;
                 canvasMenu.gameObject.SetActive(false);  
+            }
+            if(Input.GetKey(KeyCode.F1)) {
+                GameManager.BackToMenu();
             }
         }
 
