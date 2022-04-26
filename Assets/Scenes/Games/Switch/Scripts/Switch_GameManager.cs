@@ -1,22 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class GameController : MonoBehaviour
+public class Switch_GameManager : MonoBehaviour
 {
 
     public GameObject player;
 
+    public GameObject respawn;
+
+    [Header("Texts")]
+    public TMP_Text txtScoreboard;
+    private int scoreboard=0;
+    public TMP_Text txtDeathCounter;
+    private int deathCounter=0;
+
+    [Header("Floors")]
     public GameObject floorBluePrefab;
     GameObject[] floorsBlue;
     
     public GameObject floorRedPrefab;
     GameObject[] floorsRed;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        txtScoreboard.text = $"Score:{scoreboard}";
+        txtDeathCounter.text = $"Deaths:{deathCounter}";
+    }
     void Start()
     {
-
         floorsBlue = GameObject.FindGameObjectsWithTag("Floor_Blue");
         floorsRed = GameObject.FindGameObjectsWithTag("Floor_Red");
         Debug.Log($"Nesse estágio tem {floorsBlue.Length} Azul e {floorsRed.Length} Vermelho");
@@ -27,6 +40,7 @@ public class GameController : MonoBehaviour
     void FixedUpdate()
     {
         DetectFloor();
+        DieZone();
     }
 
     void DetectFloor() {        
@@ -49,7 +63,7 @@ public class GameController : MonoBehaviour
     {
         foreach (GameObject floor in floors)
         {
-            floor.GetComponent<BoxCollider2D>().isTrigger = true;
+            floor.GetComponent<BoxCollider2D>().isTrigger = true;            
         }
     }
 
@@ -65,4 +79,20 @@ public class GameController : MonoBehaviour
     {
         return obj.GetComponent<SpriteRenderer>().color;
     }
+
+    private void DieZone()
+    {
+        if (Switch_PlayerController.isDie)
+        {
+            Debug.Log("Morreu");
+            player.transform.position = respawn.transform.position;
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            Switch_PlayerController.isDie = false;
+            txtDeathCounter.text = $"Deaths:{++deathCounter}";
+        }
+    }
+
+
+
+
 }
