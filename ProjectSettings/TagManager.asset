@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor_Blue
   - Floor_Red
+  - Switch_DieZone
   layers:
   - Default
   - TransparentFX
