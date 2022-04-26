@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class Switch_GameManager : MonoBehaviour
 {
 
     public GameObject player;
 
+    [Header("Floors")]
     public GameObject floorBluePrefab;
     GameObject[] floorsBlue;
     
@@ -49,7 +50,7 @@ public class GameController : MonoBehaviour
     {
         foreach (GameObject floor in floors)
         {
-            floor.GetComponent<BoxCollider2D>().isTrigger = true;
+            floor.GetComponent<BoxCollider>().isTrigger = true;            
         }
     }
 
@@ -57,7 +58,7 @@ public class GameController : MonoBehaviour
     {
         foreach (GameObject floor in floors)
         {
-            floor.GetComponent<BoxCollider2D>().isTrigger = false;
+            floor.GetComponent<BoxCollider>().isTrigger = false;
         }
     }
 
