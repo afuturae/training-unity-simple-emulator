@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: 
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Games/Ping-Pong/pingpong.unity
     guid: 9fcfe8c5b1ee22043955405d850dc099
+  - enabled: 1
+    path: Assets/Scenes/Games/Switch/Scenes/Switch_Stage1.unity
+    guid: 2d9079418fe58ea46ae34d777654b578
+  - enabled: 1
+    path: Assets/Scenes/Games/Switch/Scenes/Switch_Stage2.unity
+    guid: 8585e953ed0a4c2469e2ae6a6ee06751
   m_configObjects: {}
