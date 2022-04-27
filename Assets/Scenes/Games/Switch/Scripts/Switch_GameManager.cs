@@ -49,6 +49,18 @@ public class Switch_GameManager : MonoBehaviour
         DieZone();        
     }
 
+    private void Update()
+    {        
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            GameManager.BackToMenu();
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            ResetGame();
+        }
+    }
+
     void DetectFloor() {        
         if (GetColor(player) == GetColor(floorBluePrefab)){
             PassFloor(floorsBlue);
@@ -124,6 +136,15 @@ public class Switch_GameManager : MonoBehaviour
     {
         Switch_SceneManager.deathCounter = deathCounter;
         Switch_SceneManager.scoreboard = scoreboard;
+    }
+
+    private void ResetGame()
+    {
+        deathCounter = 0;
+        scoreboard = 0;
+        SaveSceneData();
+        SceneManager.LoadScene("Switch_Stage1");
+
     }
 
 }
