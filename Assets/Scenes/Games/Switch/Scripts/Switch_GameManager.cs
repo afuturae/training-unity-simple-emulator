@@ -90,7 +90,6 @@ public class Switch_GameManager : MonoBehaviour
     {
         if (Switch_PlayerController.isDie)
         {
-            Debug.Log("Morreu");
             player.transform.position = respawn.transform.position;
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             Switch_PlayerController.isDie = false;
@@ -126,8 +125,5 @@ public class Switch_GameManager : MonoBehaviour
         Switch_SceneManager.deathCounter = deathCounter;
         Switch_SceneManager.scoreboard = scoreboard;
     }
-
-
-
 
 }
