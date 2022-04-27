@@ -44,7 +44,7 @@ public class Switch_PlayerController : MonoBehaviour
     {
         direction = Input.GetAxis("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
         {
             Jump();
         }
