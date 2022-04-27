@@ -28,6 +28,8 @@ public class Switch_PlayerController : MonoBehaviour
 
     public static bool isDie;
 
+    public static bool nextStage;
+
     private void Awake()
     {
         player = GetComponent<Transform>().gameObject;
@@ -44,7 +46,7 @@ public class Switch_PlayerController : MonoBehaviour
     {
         direction = Input.GetAxis("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
         {
             Jump();
         }
@@ -64,12 +66,10 @@ public class Switch_PlayerController : MonoBehaviour
         {
             if (Switch_GameManager.GetColor(player) == (new Color(0, 0, 0.7f, 1)))
             {
-                Debug.Log("O player está azul, troque para vermelho");
                 player.GetComponent<SpriteRenderer>().color = new Color(0.7f, 0, 0, 1);
             }
             else
             {
-                Debug.Log("O player está vermelho, troque para azul");
                 player.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0.7f, 1);
             }
         }
@@ -81,6 +81,11 @@ public class Switch_PlayerController : MonoBehaviour
         if (collider.CompareTag("Switch_DieZone"))
         {
             isDie = true;
+        }
+
+        if (collider.CompareTag("Switch_Flower"))
+        {
+            nextStage = true;
         }
     }
 

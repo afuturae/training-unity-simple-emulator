@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Switch_GameManager : MonoBehaviour
 {
 
     public GameObject player;
+    public string nextStage;
 
     public GameObject respawn;
 
@@ -25,14 +27,17 @@ public class Switch_GameManager : MonoBehaviour
 
     private void Awake()
     {
-        txtScoreboard.text = $"Score:{scoreboard}";
-        txtDeathCounter.text = $"Deaths:{deathCounter}";
+        LoadSceneData();
+        
+
+        txtScoreboard.text = $"Flowers: {scoreboard}";
+        txtDeathCounter.text = $"Deaths: {deathCounter}";
+        
     }
     void Start()
     {
         floorsBlue = GameObject.FindGameObjectsWithTag("Floor_Blue");
         floorsRed = GameObject.FindGameObjectsWithTag("Floor_Red");
-        Debug.Log($"Nesse estágio tem {floorsBlue.Length} Azul e {floorsRed.Length} Vermelho");
 
     }
 
@@ -40,7 +45,20 @@ public class Switch_GameManager : MonoBehaviour
     void FixedUpdate()
     {
         DetectFloor();
-        DieZone();
+        NextStage();
+        DieZone();        
+    }
+
+    private void Update()
+    {        
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            GameManager.BackToMenu();
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            ResetGame();
+        }
     }
 
     void DetectFloor() {        
@@ -84,15 +102,49 @@ public class Switch_GameManager : MonoBehaviour
     {
         if (Switch_PlayerController.isDie)
         {
-            Debug.Log("Morreu");
             player.transform.position = respawn.transform.position;
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             Switch_PlayerController.isDie = false;
-            txtDeathCounter.text = $"Deaths:{++deathCounter}";
+            txtDeathCounter.text = $"Deaths: {++deathCounter}";
         }
     }
 
+    private void NextStage()
+    {
+        if (Switch_PlayerController.nextStage)
+        {
+            Switch_PlayerController.nextStage = false;
+            txtScoreboard.text = $"Flowers: {++scoreboard}";
+            SaveSceneData();
+            SceneManager.LoadScene(nextStage);
+        }
+    }
 
+    private void LoadSceneData()
+    {
+        if (Switch_SceneManager.deathCounter >= 0)
+        {
+            deathCounter = Switch_SceneManager.deathCounter;
+        }
+        if (Switch_SceneManager.scoreboard >= 0)
+        {
+            scoreboard = Switch_SceneManager.scoreboard;
+        }
+    }
 
+    private void SaveSceneData()
+    {
+        Switch_SceneManager.deathCounter = deathCounter;
+        Switch_SceneManager.scoreboard = scoreboard;
+    }
+
+    private void ResetGame()
+    {
+        deathCounter = 0;
+        scoreboard = 0;
+        SaveSceneData();
+        SceneManager.LoadScene("Switch_Stage1");
+
+    }
 
 }
