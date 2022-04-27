@@ -7,7 +7,10 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/MainMenu/main_menu.unity
+    guid: 65a1b9c8ea11915459efe9398364c091
   - enabled: 1
     path: Assets/Scenes/Games/Ping-Pong/pingpong.unity
     guid: 9fcfe8c5b1ee22043955405d850dc099
@@ -17,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Games/Switch/Scenes/Switch_Stage2.unity
     guid: 8585e953ed0a4c2469e2ae6a6ee06751
+  - enabled: 1
+    path: Assets/Scenes/Games/Switch/Scenes/Switch_Stage3.unity
+    guid: a4575614814e093498356dd0e082c59f
+  - enabled: 1
+    path: Assets/Scenes/Games/Switch/Scenes/Switch_StageFinal.unity
+    guid: d9b1af90453e6464985c8836946f80d3
   m_configObjects: {}
