@@ -16,9 +16,9 @@ public class SpaceInvaders_PlayerController : MonoBehaviour
 
     void FixedUpdate() {
         rb2d.velocity = new Vector2(0, 0);
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
+        if (Input.GetKey(KeyCode.A)) {
             rb2d.velocity = new Vector2(-1, 0) * velocity * Time.deltaTime;
-        } else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
+        } else if(Input.GetKey(KeyCode.D)) {
             rb2d.velocity = new Vector2(1, 0) * velocity * Time.deltaTime;
         }
 
