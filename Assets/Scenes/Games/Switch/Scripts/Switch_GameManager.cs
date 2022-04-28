@@ -50,14 +50,21 @@ public class Switch_GameManager : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ResetGame();
+            Switch_MenuManager.BackToMenu();
+        }
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            GameManager.BackToMenu();
+            ResetGame();
+            Switch_MenuManager.QuitGame();
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
             ResetGame();
+            SceneManager.LoadScene("Switch_Stage1");
         }
     }
 
@@ -143,8 +150,6 @@ public class Switch_GameManager : MonoBehaviour
         deathCounter = 0;
         scoreboard = 0;
         SaveSceneData();
-        SceneManager.LoadScene("Switch_Stage1");
-
     }
 
 }
