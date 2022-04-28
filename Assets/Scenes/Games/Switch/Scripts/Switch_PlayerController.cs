@@ -32,6 +32,7 @@ public class Switch_PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        xSpeed = 5f;
         player = GetComponent<Transform>().gameObject;
 
         gravity = (2 * maxHeight) / (Mathf.Pow(timeToPeak, 2));
