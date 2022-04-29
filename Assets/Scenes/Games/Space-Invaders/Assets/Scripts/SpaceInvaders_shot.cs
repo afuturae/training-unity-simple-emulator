@@ -11,8 +11,8 @@ public class SpaceInvaders_shot : MonoBehaviour
         Destroy(gameObject, 3f);
     }
 
-    private void OnTriggerEnter2D(Collider2D collisor) {     
-        if(collisor.name == "SpaceInvaders_enemy") {
+    private void OnTriggerEnter2D(Collider2D collisor) {
+        if(collisor.name == "SpaceInvaders_enemy(Clone)") {
             Destroy(gameObject, 0f);
         }
     }

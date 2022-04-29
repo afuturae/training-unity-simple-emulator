@@ -32,4 +32,14 @@ public class SpaceInvaders_PlayerController : MonoBehaviour
         }
     }
 
+    private void Dead() {
+        Destroy(gameObject, 0f);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collisor) {
+        if(collisor.collider.name == "SpaceInvaders_enemy(Clone)"){
+            Dead();
+        }
+    }
+
 }
