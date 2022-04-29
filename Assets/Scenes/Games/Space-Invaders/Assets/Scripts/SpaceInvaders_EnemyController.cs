@@ -6,10 +6,13 @@ public class SpaceInvaders_EnemyController : MonoBehaviour
 {
 
     [SerializeField] public Transform enemy_explosion;
-    public Transform currentEnemyPosition;
+    private Transform currentEnemyPosition;
+    private Rigidbody2D rb2d;
 
     private void Start() {
         currentEnemyPosition = gameObject.transform;
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
+        rb2d.velocity = new Vector2(0, -1) * SpaceInvaders_GameController.enemyVelocity * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collisor) {

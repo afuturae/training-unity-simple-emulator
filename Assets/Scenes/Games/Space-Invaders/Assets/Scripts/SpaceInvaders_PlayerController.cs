@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpaceInvaders_PlayerController : MonoBehaviour
 {
-    readonly float velocity = 450f;
     readonly float fireRate = 0.4f;
     float timer = 0f;
     public Rigidbody2D rb2d;
@@ -17,9 +16,9 @@ public class SpaceInvaders_PlayerController : MonoBehaviour
     void FixedUpdate() {
         rb2d.velocity = new Vector2(0, 0);
         if (Input.GetKey(KeyCode.A)) {
-            rb2d.velocity = new Vector2(-1, 0) * velocity * Time.deltaTime;
+            rb2d.velocity = new Vector2(-1, 0) * SpaceInvaders_GameController.playerVelocity * Time.deltaTime;
         } else if(Input.GetKey(KeyCode.D)) {
-            rb2d.velocity = new Vector2(1, 0) * velocity * Time.deltaTime;
+            rb2d.velocity = new Vector2(1, 0) * SpaceInvaders_GameController.playerVelocity * Time.deltaTime;
         }
 
         if(Input.GetKey(KeyCode.Space) && timer <= 0){
