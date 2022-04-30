@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class SpaceInvaders_GameController : MonoBehaviour
 {
@@ -10,12 +12,18 @@ public class SpaceInvaders_GameController : MonoBehaviour
     public GameObject spawn;
 
     [SerializeField] public Transform enemy;
+    public Canvas canvasMenu;
+    public TMP_Text info;
 
     private BoxCollider2D boxCollider;
+    private bool isPause = false;
 
-    private void Start() {
+    private void Awake() {
         boxCollider = spawn.GetComponent<BoxCollider2D>();
-        GenerateEnemy();
+        Time.timeScale = 0;
+        isPause = true;
+        info.text = "Space Invaders";
+        canvasMenu.gameObject.SetActive(true);
     }
 
     private void GenerateEnemy() {
@@ -25,8 +33,20 @@ public class SpaceInvaders_GameController : MonoBehaviour
         Instantiate(enemy, enemyCoordinate, enemy.rotation);
     }
 
-    private void FixedUpdate() {
-        
+    private void Update() {
+        if(isPause){
+            if(Input.GetKey(KeyCode.Space)){
+                Debug.Log("APERTOU");
+                isPause = false;
+                canvasMenu.gameObject.SetActive(false);
+                Time.timeScale = 1;
+            }
+            if(Input.GetKey(KeyCode.F1)) {
+                isPause = false;
+                Time.timeScale = 1;
+                GameManager.BackToMenu();
+            }
+        }
     }
 
 }
