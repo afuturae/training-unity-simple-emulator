@@ -37,7 +37,7 @@ public class SpaceInvaders_GameController : MonoBehaviour
     }
 
     private void GenerateEnemy() {
-        float coordinateX = Random.Range(0, boxCollider.size[0]/2);
+        float coordinateX = Random.Range(-boxCollider.size[0]/2, boxCollider.size[0]/2);
         float coordinatey = Random.Range(spawn.transform.position.y, boxCollider.size[1]/2 + spawn.transform.position.y);
         Vector2 enemyCoordinate = new Vector2(coordinateX, coordinatey);
         Instantiate(enemy, enemyCoordinate, enemy.rotation);
