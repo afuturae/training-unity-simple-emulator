@@ -15,6 +15,8 @@ public class SpaceInvaders_GameController : MonoBehaviour
     [SerializeField] public Transform enemy;
     public Canvas canvasMenu;
     static TMP_Text info;
+    static TMP_Text scoreboard;
+    static int scoreboardPoints = 0;
 
     private BoxCollider2D boxCollider;
     private static bool isPause = false;
@@ -27,7 +29,12 @@ public class SpaceInvaders_GameController : MonoBehaviour
                 .Find("canvas_menu").transform
                 .Find("menu_info").GetComponent<TMP_Text>();
 
+        var scoreboardObj = GameObject.Find("GameManager").transform
+                .Find("canvas_scoreboard").transform
+                .Find("menu_scoreboard").GetComponent<TMP_Text>();
+
         info = gameObj;
+        scoreboard = scoreboardObj;
 
         boxCollider = spawn.GetComponent<BoxCollider2D>();
         Time.timeScale = 0;
@@ -49,6 +56,11 @@ public class SpaceInvaders_GameController : MonoBehaviour
 
     private void Start() {
         SpawnEnemies();
+    }
+
+    public static void Point() {
+        scoreboardPoints += 10;
+        scoreboard.text = string.Format("{0:00000}", scoreboardPoints);
     }
 
     public static void Dead() {
@@ -75,8 +87,10 @@ public class SpaceInvaders_GameController : MonoBehaviour
         }
 
         isPause = true;
-        info.text = "Você morreu!";
+        info.text = "Você morreu! Pontuação: " + scoreboardPoints;
         Time.timeScale = 0;
+        scoreboardPoints = 0;
+        scoreboard.text = "00000";
     }
     private void Update() {
         if(isPause){
