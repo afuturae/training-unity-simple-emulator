@@ -468,6 +468,11 @@ MonoBehaviour:
     description: "Game de plataforma onde voc\xEA precisa alternar as cores para
       coletar a flor e avan\xE7ar no jogo."
     Icon: {fileID: 21300000, guid: 3764d9b2f11f99c4c8227ca9bf2e8f70, type: 3}
+    sceneName: Switch_Stage1
+  - name: Space Invaders
+    description: "Nostalgia com o cl\xE1ssico Space Invaders do Atari"
+    Icon: {fileID: 21300000, guid: 4a4419d47191d224a9b3bbde5dba19bf, type: 3}
+    sceneName: SpaceInvaders
     sceneName: Switch_Home
 --- !u!114 &593059676
 MonoBehaviour:
