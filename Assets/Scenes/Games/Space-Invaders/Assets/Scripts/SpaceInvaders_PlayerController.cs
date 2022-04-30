@@ -15,6 +15,11 @@ public class SpaceInvaders_PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
+
+        if(SpaceInvaders_GameController.lifesNumber <=0){
+            Dead();
+        }
+
         rb2d.velocity = new Vector2(0, 0);
         if (Input.GetKey(KeyCode.A)) {
             rb2d.velocity = new Vector2(-1, 0) * SpaceInvaders_GameController.playerVelocity * Time.deltaTime;

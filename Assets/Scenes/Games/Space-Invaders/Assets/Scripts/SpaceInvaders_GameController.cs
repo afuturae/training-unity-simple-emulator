@@ -9,15 +9,16 @@ public class SpaceInvaders_GameController : MonoBehaviour
 
     public static float enemyVelocity = 100f;
     public static float playerVelocity = 450f;
+    public static int lifesNumber = 3;
     public GameObject spawn;
     [SerializeField] public Transform player;
 
     [SerializeField] public Transform enemy;
     public Canvas canvasMenu;
-    static TMP_Text info;
-    static TMP_Text scoreboard;
-    static int scoreboardPoints = 0;
-
+    private static TMP_Text info;
+    private static TMP_Text scoreboard;
+    private static TMP_Text lifes;
+    private static int scoreboardPoints = 0;
     private BoxCollider2D boxCollider;
     private static bool isPause = false;
     private float spawnFrequency = 2f;
@@ -30,10 +31,14 @@ public class SpaceInvaders_GameController : MonoBehaviour
                 .Find("menu_info").GetComponent<TMP_Text>();
 
         var scoreboardObj = GameObject.Find("GameManager").transform
-                .Find("canvas_scoreboard").transform
+                .Find("canvas_info").transform
                 .Find("menu_scoreboard").GetComponent<TMP_Text>();
+        var lifesObj = GameObject.Find("GameManager").transform
+                .Find("canvas_info").transform
+                .Find("menu_lifes").GetComponent<TMP_Text>();
 
         info = gameObj;
+        lifes = lifesObj;
         scoreboard = scoreboardObj;
 
         boxCollider = spawn.GetComponent<BoxCollider2D>();
@@ -61,6 +66,11 @@ public class SpaceInvaders_GameController : MonoBehaviour
     public static void Point() {
         scoreboardPoints += 10;
         scoreboard.text = string.Format("{0:00000}", scoreboardPoints);
+    }
+
+    public static void Damage() {
+        lifesNumber -=1;
+        lifes.text = lifesNumber + " vidas";
     }
 
     public static void Dead() {
@@ -91,6 +101,8 @@ public class SpaceInvaders_GameController : MonoBehaviour
         Time.timeScale = 0;
         scoreboardPoints = 0;
         scoreboard.text = "00000";
+        lifesNumber = 3;
+        lifes.text = "3 vidas";
     }
     private void Update() {
         if(isPause){

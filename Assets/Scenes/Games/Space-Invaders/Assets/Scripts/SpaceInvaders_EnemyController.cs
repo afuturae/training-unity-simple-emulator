@@ -19,6 +19,10 @@ public class SpaceInvaders_EnemyController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collisor) {
+        if(collisor.name == "trigger_down"){
+            SpaceInvaders_GameController.Damage();
+            Destroy(gameObject, 0f);
+        }
         if(collisor.name == "shot(Clone)"){
             SpaceInvaders_GameController.Point();
             Instantiate(enemy_explosion, currentEnemyPosition.position, currentEnemyPosition.rotation);
