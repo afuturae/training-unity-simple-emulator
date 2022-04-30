@@ -8,6 +8,7 @@ public class SpaceInvaders_PlayerController : MonoBehaviour
     float timer = 0f;
     public Rigidbody2D rb2d;
     [SerializeField] public Transform shot;
+    [SerializeField] public Transform explosion;
     public Transform playerComponent;
 
     void Start() {
@@ -33,7 +34,9 @@ public class SpaceInvaders_PlayerController : MonoBehaviour
     }
 
     private void Dead() {
+        Instantiate(explosion, playerComponent.position, playerComponent.rotation);
         Destroy(gameObject, 0f);
+        SpaceInvaders_GameController.Dead();
     }
 
     private void OnCollisionEnter2D(Collision2D collisor) {

@@ -8,6 +8,9 @@ TagManager:
   - Floor_Red
   - Switch_DieZone
   - Switch_Flower
+  - shots
+  - enemies
+  - particles
   layers:
   - Default
   - TransparentFX

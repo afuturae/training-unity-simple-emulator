@@ -12,6 +12,9 @@ public class SpaceInvaders_EnemyController : MonoBehaviour
     private void Start() {
         currentEnemyPosition = gameObject.transform;
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate() {
         rb2d.velocity = new Vector2(0, -1) * SpaceInvaders_GameController.enemyVelocity * Time.deltaTime;
     }
 
