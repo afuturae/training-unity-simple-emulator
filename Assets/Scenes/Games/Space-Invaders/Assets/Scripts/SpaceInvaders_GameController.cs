@@ -10,6 +10,7 @@ public class SpaceInvaders_GameController : MonoBehaviour
     public static float enemyVelocity = 100f;
     public static float playerVelocity = 450f;
     public static int lifesNumber = 3;
+    private static bool isDead = true;
     public GameObject spawn;
     [SerializeField] public Transform player;
 
@@ -103,12 +104,16 @@ public class SpaceInvaders_GameController : MonoBehaviour
         scoreboard.text = "00000";
         lifesNumber = 3;
         lifes.text = "3 vidas";
+        isDead = true;
     }
     private void Update() {
         if(isPause){
             canvasMenu.gameObject.SetActive(true);
             if(Input.GetKey(KeyCode.W)){
-                Instantiate(player, new Vector3(0, -4.58f, 0),Quaternion.identity);
+                if(isDead){
+                    Instantiate(player, new Vector3(0, -4.58f, 0),Quaternion.identity);
+                    isDead = false;
+                }
                 isPause = false;
                 canvasMenu.gameObject.SetActive(false);
                 Time.timeScale = 1;
@@ -117,6 +122,11 @@ public class SpaceInvaders_GameController : MonoBehaviour
                 isPause = false;
                 Time.timeScale = 1;
                 GameManager.BackToMenu();
+            }
+        } else {
+            if(Input.GetKey(KeyCode.Escape)) {
+                isPause = true;
+                Time.timeScale = 0;
             }
         }
     }
